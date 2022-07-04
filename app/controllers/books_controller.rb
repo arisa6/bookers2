@@ -25,20 +25,23 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    if @book.user_id != current_user.id  #@bookを持っているuserとログインしている人が等しい場合
+      redirect_to books_path
+    end
   end
 
   def update
     @book = Book.find(params[:id])
-    if @book.update(book_params)
+    if @book.update(book_params)  
       redirect_to book_path(@book), notice: "You have updated book successfully."
     else
       render "edit"
     end
   end
 
-  def destroy
-    @book = Book.find(params[:id])
-    @book.destroy
+  def destroy  #特にviewには渡さないため変数でok (@なし)
+    book = Book.find(params[:id])
+    book.destroy
     redirect_to books_path
   end
 
