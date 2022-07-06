@@ -7,6 +7,19 @@
   <tr>
 	  <th>introduction</th>
 	  <th><%= user.introduction %></th>
+	<tr>
+	  <th>follows</th>
+	  <th><%= user.followings.count %></th>
+	</tr>
+	<tr>
+	  <th>followers</th>
+	  <th><%= user.followers.count %></th>
+	</tr>
+	<tr>
+	  <% if current_user != user %>
+	  <th><%= render 'relationships/followaction', user: user, class: "btn-sm btn-danger" %></th>
+	  <% end %>
+	</tr>
   </tr>
 </table>
 　
