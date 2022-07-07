@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get 'followers' => 'relationships#followers', as: 'followers'
   end
   
-  get "search" => "searches#search"
+  get '/search', to: 'searches#search'
   # 検索ボタンが押された時、Searchesコントローラーのsearchアクションが実行されるように定義
   
   
