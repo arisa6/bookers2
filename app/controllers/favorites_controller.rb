@@ -4,15 +4,17 @@ class FavoritesController < ApplicationController
   # postを見つけてそれに紐づいたfavoriteを生成したり削除したりできる設定
   def create
     book = Book.find(params[:book_id])
-    favorite = current_user.favorites.new(book_id: book.id)
-    favorite.save
+    @favorite = current_user.favorites.new(book_id: book.id)
+    @favorite.save
+    render 'create'
     #redirect_to request.referer (非同期通信化)  #いいねした前の画面に戻る
   end
 
   def destroy
     book = Book.find(params[:book_id])
-    favorite = current_user.favorites.find_by(book_id: book.id)
-    favorite.destroy
+    @favorite = current_user.favorites.find_by(book_id: book.id)
+    @favorite.destroy
+    render 'destroy'
     #redirect_to request.referer (非同期通信化)  #いいねした前の画面に戻る
   end
 end

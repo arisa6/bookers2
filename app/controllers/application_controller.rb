@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
 
   private
 
-  def after_sign_in_path_for(resource)
-    # アカウント登録後のリダイレクト先
+  def after_sign_in_path_for(resource) # アカウント登録後のリダイレクト先
     user_path(resource)
   end
 
